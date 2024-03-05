@@ -62,6 +62,7 @@ const Form = () => {
       formData.append(value, values[value]);
     }
     formData.append("picturePath", values.picture.name);
+
     const savedUserResponse = await fetch(
       "http://localhost:3001/auth/register",
       {
@@ -182,7 +183,7 @@ const Form = () => {
                     acceptedFiles=".jpg,.jpeg,.png"
                     multiple={false}
                     onDrop={(acceptedFiles) =>
-                      setFieldValue("picturePath", acceptedFiles[0])
+                      setFieldValue("picture", acceptedFiles[0])
                     }
                   >
                     {({ getRootProps, getInputProps }) => (
@@ -193,7 +194,7 @@ const Form = () => {
                         sx={{ "&:hover": { cursor: "pointer" } }}
                       >
                         <input {...getInputProps()} />
-                        {!values.picturePath ? (
+                        {!values.picture ? (
                           <p>Add Picture Here</p>
                         ) : (
                           <FlexBetween>
